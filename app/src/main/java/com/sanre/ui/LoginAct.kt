@@ -3,12 +3,13 @@ package com.sanre.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.orhanobut.logger.Logger
+import com.rxjava.rxlife.life
 import com.sanre.R
-import dagger.hilt.android.AndroidEntryPoint
+import com.sanre.app.di.ComponentHolder
+import com.sanre.data.api.SimpleApi
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class LoginAct : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,21 +18,19 @@ class LoginAct : AppCompatActivity() {
         login()
     }
 
-    @Inject
-    lateinit var retrofit1: Retrofit
-
-    @Inject
-    lateinit var retrofit2: Retrofit
+    lateinit var simpleApi:SimpleApi
 
     private fun login() {
         val username = "13611840424"
         val password = "111111"
-            Logger.e(retrofit1.toString())
-        Logger.e(retrofit2.toString())
+        Logger.e(ComponentHolder.appComponent.api().toString())
+        Logger.e(ComponentHolder.appComponent.api().toString())
+
 //        simpleApi.login(username = username, password = password)
 //            .subscribeOn(Schedulers.io())
 //            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe(object :SingleObserver<LoginResponse>{
+//            .life(this)
+//            .subscribe(object : SingleObserver<LoginResponse> {
 //                override fun onSubscribe(d: Disposable?) {
 //                }
 //

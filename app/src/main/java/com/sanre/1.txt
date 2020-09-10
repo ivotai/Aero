@@ -1,2 +1,4 @@
-1 决定不适用 hilt
-2
+1 不使用 hilt，继续使用 dagger2.
+https://dagger.dev/dev-guide/
+2 rxjava 依赖更新到 3
+3

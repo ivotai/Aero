@@ -3,14 +3,14 @@ package com.sanre.app
 import androidx.multidex.MultiDexApplication
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import dagger.hilt.android.HiltAndroidApp
+import com.sanre.app.di.ComponentHolder
 
-@HiltAndroidApp(MultiDexApplication::class)
-class App : Hilt_App() {
+class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
         Logger.addLogAdapter(AndroidLogAdapter())
+        ComponentHolder.init(this)
     }
 
 }
