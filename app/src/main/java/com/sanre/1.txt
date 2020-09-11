@@ -1,4 +1,3 @@
-1 不使用 hilt，继续使用 dagger2.
-https://dagger.dev/dev-guide/
-2 rxjava 依赖更新到 3
-3
+1 继续使用 dagger2.
+2 rxjava3
+3 android q 的权限申请
