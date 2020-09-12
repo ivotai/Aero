@@ -2,6 +2,7 @@ package com.sanre.ui.login
 
 import com.jakewharton.rxbinding4.view.clicks
 import com.sanre.R
+import com.sanre.app.Globals.logined
 import com.sanre.app.di.ComponentHolder
 import com.sanre.ui.base.BaseFra
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -23,7 +24,9 @@ class LoginFra : BaseFra(R.layout.fra_login) {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onSuccess = {},
+                onSuccess = {
+                    logined = true
+                },
                 onError = {}
             )
     }

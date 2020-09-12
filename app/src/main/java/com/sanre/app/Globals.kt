@@ -11,6 +11,6 @@ object Globals {
 
     lateinit var loginResponse: LoginResponse
 
-    var isLogout = false
+    var logined = false
 
 }
