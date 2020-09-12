@@ -1,0 +1,25 @@
+package com.sanre.ui.base
+
+import android.os.Bundle
+import android.view.View
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+
+abstract class BaseFra(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId), UI {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initViews()
+        initBindings()
+        initEvents()
+    }
+
+    override fun initViews() {
+    }
+
+    override fun initBindings() {
+    }
+
+    override fun initEvents() {
+    }
+
+}

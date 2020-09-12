@@ -1,3 +1,7 @@
-1 继续使用 dagger2.
-2 rxjava3
-3 android q 的权限申请
+1 继续使用 dagger2
+2 rx java3
+3 android 10 的权限申请
+4 使用 FragmentContainerView
+5 just fragment
+
+

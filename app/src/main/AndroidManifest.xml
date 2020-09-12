@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name="com.sanre.ui.LoginAct">
+        <activity android:name="com.sanre.ui.login.LoginAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
