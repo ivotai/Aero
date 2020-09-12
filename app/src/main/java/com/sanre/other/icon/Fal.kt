@@ -1,4 +1,4 @@
-package com.sanre.icon
+package com.sanre.other.icon
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface

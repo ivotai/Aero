@@ -55,13 +55,13 @@ dependencies {
 
     implementation 'com.orhanobut:logger:2.2.0'
 
-    implementation 'com.ljx.rxlife3:rxlife-rxjava:3.0.0'
+//    implementation 'com.ljx.rxlife3:rxlife-rxjava:3.0.0'
 
     implementation 'com.github.tbruyelle:rxpermissions:0.12'
 
     implementation "com.mikepenz:iconics-core:5.0.3"
     implementation "com.mikepenz:iconics-views:5.0.3"
 
-    implementation    'com.github.bassaer:materialdesigncolors:1.0.0'
+    implementation 'com.github.bassaer:materialdesigncolors:1.0.0'
 }
 
