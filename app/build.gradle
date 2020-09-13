@@ -66,5 +66,7 @@ dependencies {
     implementation 'com.blankj:utilcodex:1.29.0'
 
     implementation 'com.ruffian.library:RWidgetHelper-AndroidX:0.0.6'
+
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
 }
 

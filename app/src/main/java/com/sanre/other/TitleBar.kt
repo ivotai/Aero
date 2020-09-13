@@ -17,7 +17,7 @@ class TitleBar(context: Context, attrs: AttributeSet?) : FrameLayout(context, at
     override val containerView = this
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.title_bar, this, true)
+        LayoutInflater.from(context).inflate(R.layout.title_bar, this)
 
         tvOperation.visibility = View.INVISIBLE
 
