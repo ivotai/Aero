@@ -8,6 +8,7 @@ import com.sanre.app.di.ComponentHolder
 import com.sanre.other.icon.Fad
 import com.sanre.other.icon.Fal
 import com.sanre.other.icon.Far
+import com.sanre.other.icon.Fas
 
 class App : MultiDexApplication() {
 
@@ -25,8 +26,9 @@ class App : MultiDexApplication() {
     private fun initIconics() {
         Iconics.init(applicationContext)
         Iconics.registerFont(Fal)
-        Iconics.registerFont(Fad)
         Iconics.registerFont(Far)
+        Iconics.registerFont(Fas)
+        Iconics.registerFont(Fad)
     }
 
 }

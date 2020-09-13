@@ -64,5 +64,7 @@ dependencies {
     implementation 'com.github.bassaer:materialdesigncolors:1.0.0'
 
     implementation 'com.blankj:utilcodex:1.29.0'
+
+    implementation 'com.ruffian.library:RWidgetHelper-AndroidX:0.0.6'
 }
 
