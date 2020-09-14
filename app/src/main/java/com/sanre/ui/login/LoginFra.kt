@@ -11,7 +11,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fra_login.*
-import java.util.concurrent.TimeUnit
 
 class LoginFra : BaseFra(R.layout.fra_login) {
 
@@ -21,6 +20,7 @@ class LoginFra : BaseFra(R.layout.fra_login) {
 
     override fun initBindings() {
         btnLogin.clicks().subscribe { login() }
+
     }
 
     private val username = "13611840424"
@@ -29,7 +29,6 @@ class LoginFra : BaseFra(R.layout.fra_login) {
     private fun login() {
         showMask(context)
         ComponentHolder.appComponent.api().login(username = username, password = password)
-            .delay(2, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(

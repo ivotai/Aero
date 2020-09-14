@@ -11,8 +11,7 @@ object MaskHelper {
         mask = KProgressHUD.create(context)
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
             .setCancellable(false)
-//            .setAnimationSpeed(2)
-            .setDimAmount(0.5f)
+            .setDimAmount(0.6f)
             .show()
     }
 
