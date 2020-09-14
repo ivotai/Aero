@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.title_bar.view.*
 
 class TitleBar(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs){
 
-//    override val containerView = this
-
     init {
         LayoutInflater.from(context).inflate(R.layout.title_bar, this)
 

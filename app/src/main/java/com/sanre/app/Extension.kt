@@ -1,5 +1,6 @@
 package com.sanre.app
 
+import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.TextView
@@ -30,6 +31,8 @@ fun View.safeClicks(): Observable<Unit> = this.clicks()
 //}
 
 fun Fragment.startAct(cls: Class<*>) = startActivity(Intent(context, cls))
+
+fun Context.startAct(cls: Class<*>) = startActivity(Intent(this, cls))
 
 fun TextView.isEmpty(): Boolean = trimText().isEmpty()
 
