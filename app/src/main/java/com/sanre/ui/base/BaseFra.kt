@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFra(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId), UI {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
         initBindings()
         initEvents()

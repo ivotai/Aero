@@ -1,18 +1,16 @@
 package com.sanre.app
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.ToastUtils
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.TimeUnit
 
 fun View.safeClicks(): Observable<Unit> = this.clicks()
-    .throttleFirst(2000, TimeUnit.MILLISECONDS)
-
+    .throttleFirst(2, TimeUnit.SECONDS)
 
 //fun <T> Single<T>.observeOnMain(lifecycleOwner: LifecycleOwner): Single<T> =
 //    this.subscribeOn(Schedulers.io())
@@ -31,20 +29,11 @@ fun View.safeClicks(): Observable<Unit> = this.clicks()
 //        .build().let { this.addItemDecoration(it) }
 //}
 
-fun Context.startAct(actClass: Class<*>) {
-    this.startActivity(Intent(this, actClass))
-}
-
-fun Context.toActAndFinish(actClass: Class<*>) {
-    this.startActivity(Intent(this, actClass))
-    this as Activity
-    this.finish()
-}
+fun Fragment.startAct(cls: Class<*>) = startActivity(Intent(context, cls))
 
 fun TextView.isEmpty(): Boolean = trimText().isEmpty()
 
 fun TextView.trimText() = text.toString().trim()
 
-fun String.toast() {
-    ToastUtils.showShort(this)
-}
+fun String.toast() = ToastUtils.showShort(this)
+

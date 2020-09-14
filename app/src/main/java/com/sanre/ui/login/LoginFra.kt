@@ -2,15 +2,18 @@ package com.sanre.ui.login
 
 import com.jakewharton.rxbinding4.view.clicks
 import com.sanre.R
+import com.sanre.app.Globals.loginResponse
 import com.sanre.app.Globals.logined
 import com.sanre.app.di.ComponentHolder
 import com.sanre.app.helper.MaskHelper.hideMask
 import com.sanre.app.helper.MaskHelper.showMask
 import com.sanre.app.isEmpty
+import com.sanre.app.startAct
 import com.sanre.app.toast
 import com.sanre.app.trimText
 import com.sanre.data.model.UserInfo
 import com.sanre.ui.base.BaseFra
+import com.sanre.ui.guide.GuideAct
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -19,6 +22,10 @@ import kotlinx.android.synthetic.main.fra_login.*
 class LoginFra : BaseFra(R.layout.fra_login) {
 
     override fun initViews() {
+        restoreUserInfo()
+    }
+
+    private fun restoreUserInfo() {
         etUsername.setText(UserInfo.username)
         etPassword.setText(UserInfo.password)
     }
@@ -50,14 +57,21 @@ class LoginFra : BaseFra(R.layout.fra_login) {
                         it.message.toast()
                         return@subscribeBy
                     }
+                    "登录成功！".toast()
                     logined = true
-                    UserInfo.username = etUsername.trimText()
-                    UserInfo.password = etPassword.trimText()
+                    storeUserInfo()
+                    loginResponse = it
+                    startAct(GuideAct::class.java)
                 },
                 onError = {
                     hideMask()
                 }
             )
+    }
+
+    private fun storeUserInfo() {
+        UserInfo.username = etUsername.trimText()
+        UserInfo.password = etPassword.trimText()
     }
 
 }
