@@ -8,13 +8,11 @@ import android.widget.FrameLayout
 import com.blankj.utilcode.util.ActivityUtils
 import com.sanre.R
 import com.sanre.app.safeClicks
-import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.title_bar.view.*
 
-class TitleBar(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs),
-    LayoutContainer {
+class TitleBar(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs){
 
-    override val containerView = this
+//    override val containerView = this
 
     init {
         LayoutInflater.from(context).inflate(R.layout.title_bar, this)

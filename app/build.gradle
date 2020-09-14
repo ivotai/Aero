@@ -75,3 +75,6 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 }
 
+androidExtensions {
+    experimental = true
+}
