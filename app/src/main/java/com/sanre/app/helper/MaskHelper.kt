@@ -1,7 +1,11 @@
 package com.sanre.app.helper
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
 import com.kaopiz.kprogresshud.KProgressHUD
+import com.sanre.R
 
 object MaskHelper {
 
@@ -9,10 +13,15 @@ object MaskHelper {
 
     fun showMask(context: Context?) {
         mask = KProgressHUD.create(context)
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setCustomView(loadingView(context))
             .setCancellable(false)
             .setDimAmount(0.6f)
             .show()
+    }
+
+    @SuppressLint("InflateParams")
+    private fun loadingView(context: Context?): View {
+        return LayoutInflater.from(context).inflate(R.layout.av_loading, null)
     }
 
     fun hideMask() {

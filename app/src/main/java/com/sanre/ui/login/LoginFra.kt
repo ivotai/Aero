@@ -17,6 +17,7 @@ import com.sanre.ui.base.BaseFra
 import com.sanre.ui.guide.GuideAct
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fra_login.*
+import java.util.concurrent.TimeUnit
 
 class LoginFra : BaseFra(R.layout.fra_login) {
 
@@ -47,6 +48,7 @@ class LoginFra : BaseFra(R.layout.fra_login) {
         showMask(context)
         ComponentHolder.appComponent.api()
             .login(username = etUsername.trimText(), password = etPassword.trimText())
+            .delay(5,TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .life(this)
             .subscribe({
