@@ -5,7 +5,7 @@ import com.sanre.ui.login.LoginAct
 
 enum class Guide(val cn: String, val cls: Class<*>) {
     GuideSelf(cn = "导航", cls = GuideAct::class.java),
-    Logout(cn = "返回登录界面", cls = LoginAct::class.java)
+    Logout(cn = "退出", cls = LoginAct::class.java)
     ;
 
     companion object {
