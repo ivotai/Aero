@@ -19,7 +19,7 @@ class App : MultiDexApplication() {
 
     private fun init() {
         Logger.addLogAdapter(AndroidLogAdapter())
-        ComponentHolder.init(this)
+        ComponentHolder.init()
         initIconics()
     }
 

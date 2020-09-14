@@ -71,5 +71,7 @@ dependencies {
 
     implementation 'com.chibatching.kotpref:kotpref:2.11.0'
     implementation 'com.chibatching.kotpref:initializer:2.11.0'
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 }
 
