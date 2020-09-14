@@ -6,6 +6,10 @@ import com.sanre.app.Globals.logined
 import com.sanre.app.di.ComponentHolder
 import com.sanre.app.helper.MaskHelper.hideMask
 import com.sanre.app.helper.MaskHelper.showMask
+import com.sanre.app.isEmpty
+import com.sanre.app.toast
+import com.sanre.app.trimText
+import com.sanre.data.model.UserInfo
 import com.sanre.ui.base.BaseFra
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -15,7 +19,8 @@ import kotlinx.android.synthetic.main.fra_login.*
 class LoginFra : BaseFra(R.layout.fra_login) {
 
     override fun initViews() {
-        titleBar.setTitle(title = "登录", allowBack = false)
+        etUsername.setText(UserInfo.username)
+        etPassword.setText(UserInfo.password)
     }
 
     override fun initBindings() {
@@ -23,18 +28,31 @@ class LoginFra : BaseFra(R.layout.fra_login) {
 
     }
 
-    private val username = "13611840424"
-    private val password = "111111"
-
     private fun login() {
+        if (etUsername.isEmpty()) {
+            "用户名不能为空".toast()
+            return
+        }
+        if (etPassword.isEmpty()) {
+            "密码不能为空".toast()
+            return
+        }
+
         showMask(context)
-        ComponentHolder.appComponent.api().login(username = username, password = password)
+        ComponentHolder.appComponent.api()
+            .login(username = etUsername.trimText(), password = etPassword.trimText())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
                     hideMask()
+                    if (!it.success) {
+                        it.message.toast()
+                        return@subscribeBy
+                    }
                     logined = true
+                    UserInfo.username = etUsername.trimText()
+                    UserInfo.password = etPassword.trimText()
                 },
                 onError = {
                     hideMask()

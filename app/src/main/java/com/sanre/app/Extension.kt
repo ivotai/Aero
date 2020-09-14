@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit
 fun View.safeClicks(): Observable<Unit> = this.clicks()
     .throttleFirst(2000, TimeUnit.MILLISECONDS)
 
-fun TextView.trimText() = this.text.toString().trim()
 
 //fun <T> Single<T>.observeOnMain(lifecycleOwner: LifecycleOwner): Single<T> =
 //    this.subscribeOn(Schedulers.io())
@@ -42,9 +41,9 @@ fun Context.toActAndFinish(actClass: Class<*>) {
     this.finish()
 }
 
-fun TextView.isEmpty(): Boolean {
-    return this.trimText().isEmpty()
-}
+fun TextView.isEmpty(): Boolean = trimText().isEmpty()
+
+fun TextView.trimText() = text.toString().trim()
 
 fun String.toast() {
     ToastUtils.showShort(this)

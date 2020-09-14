@@ -68,5 +68,8 @@ dependencies {
     implementation 'com.ruffian.library:RWidgetHelper-AndroidX:0.0.6'
 
     implementation 'com.kaopiz:kprogresshud:1.2.0'
+
+    implementation 'com.chibatching.kotpref:kotpref:2.11.0'
+    implementation 'com.chibatching.kotpref:initializer:2.11.0'
 }
 
