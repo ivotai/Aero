@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.guide.GuideAct" />
-        <activity android:name=".ui.general.BottomTabStripAct" />
+        <activity android:name=".ui.viewPager2.example1.ViewPager21Act" />
     </application>
 
 </manifest>
