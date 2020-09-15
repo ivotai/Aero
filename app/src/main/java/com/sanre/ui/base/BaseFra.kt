@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.sanre.app.di.ComponentHolder
 
 abstract class BaseFra(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId), UI {
 
@@ -21,5 +22,7 @@ abstract class BaseFra(@LayoutRes contentLayoutId: Int) : Fragment(contentLayout
 
     override fun initEvents() {
     }
+
+    val api by lazy { ComponentHolder.appComponent.api() }
 
 }

@@ -1,7 +1,8 @@
 package com.sanre.ui.login
 
 import com.jakewharton.rxbinding4.view.clicks
-import com.rxjava.rxlife.life
+import com.orhanobut.logger.Logger
+import com.rxjava.rxlife.lifeOnMain
 import com.sanre.R
 import com.sanre.app.Globals.loginResponse
 import com.sanre.app.Globals.logined
@@ -13,11 +14,10 @@ import com.sanre.app.startAct
 import com.sanre.app.toast
 import com.sanre.app.trimText
 import com.sanre.data.model.UserInfo
+import com.sanre.ui.base.BaseAct
 import com.sanre.ui.base.BaseFra
 import com.sanre.ui.guide.GuideAct
-import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fra_login.*
-import java.util.concurrent.TimeUnit
 
 class LoginFra : BaseFra(R.layout.fra_login) {
 
@@ -48,10 +48,9 @@ class LoginFra : BaseFra(R.layout.fra_login) {
         showMask(context)
         ComponentHolder.appComponent.api()
             .login(username = etUsername.trimText(), password = etPassword.trimText())
-            .delay(2, TimeUnit.SECONDS)
-            .subscribeOn(Schedulers.io())
-            .life(this)
+            .lifeOnMain(this)
             .subscribe({
+                Logger.e("result")
                 hideMask()
                 if (it.failed) return@subscribe
                 "登录成功！".toast()
@@ -68,5 +67,11 @@ class LoginFra : BaseFra(R.layout.fra_login) {
         UserInfo.username = etUsername.trimText()
         UserInfo.password = etPassword.trimText()
     }
+
+}
+
+class LoginAct : BaseAct() {
+
+    override fun createFragment() = LoginFra()
 
 }
