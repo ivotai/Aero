@@ -2,10 +2,12 @@ package com.sanre.data.api
 
 import com.sanre.app.Globals
 import com.sanre.data.model.LoginResponse
-import io.reactivex.rxjava3.core.Observable
+import com.sanre.data.model.Page
+import com.sanre.data.model.Response
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface SimpleApi {
 
@@ -17,5 +19,13 @@ interface SimpleApi {
 
     @GET("login/silence")
     fun loginSilently(@Query("token") token: String = Globals.loginToken): Call<LoginResponse>
+
+    @GET("api/v1/app/article")
+    fun getArticle(
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int ,
+        @Query("category") category: String = "zcgd",
+        @Query("keyword") keyword: String = ""
+    ): Single<Response<Page<Any>>>
 
 }

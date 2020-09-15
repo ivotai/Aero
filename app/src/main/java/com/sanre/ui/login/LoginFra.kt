@@ -48,20 +48,17 @@ class LoginFra : BaseFra(R.layout.fra_login) {
         showMask(context)
         ComponentHolder.appComponent.api()
             .login(username = etUsername.trimText(), password = etPassword.trimText())
-            .delay(2,TimeUnit.SECONDS)
+            .delay(2, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .life(this)
             .subscribe({
                 hideMask()
-                if (!it.success) {
-                    it.message.toast()
-                    return@subscribe
-                }
+                if (it.failed) return@subscribe
                 "登录成功！".toast()
                 logined = true
                 storeUserInfo()
                 loginResponse = it
-                startAct(cls = GuideAct::class.java, finishAct = true)
+                startAct(cls = GuideAct::class.java, finishSelf = true)
             }, {
                 hideMask()
             })

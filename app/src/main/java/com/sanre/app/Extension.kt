@@ -32,9 +32,9 @@ fun View.safeClicks(): Observable<Unit> = this.clicks()
 //        .build().let { this.addItemDecoration(it) }
 //}
 
-fun Fragment.startAct(cls: Class<*>, finishAct: Boolean = false) {
+fun Fragment.startAct(cls: Class<*>, finishSelf: Boolean = false) {
     startActivity(Intent(context, cls))
-    if (finishAct) activity?.finish()
+    if (finishSelf) activity?.finish()
 }
 
 fun Context.startAct(cls: Class<*>) = startActivity(Intent(this, cls))
