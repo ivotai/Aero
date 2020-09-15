@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.sanre.app.Param
-import com.sanre.ui.ArticleFra
 import com.sanre.ui.TextFra
+import com.sanre.ui.article.ArticleFra
 
 class ViewPager2Example1FragmentStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 

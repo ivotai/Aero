@@ -20,8 +20,6 @@ class GuideFra : BaseFra(R.layout.ui_title_recycler) {
             setHasFixedSize(true)
             adapter = guideAdapter
         }
-
-//        guideAdapter.setList()
     }
 
     override fun initEvents() {

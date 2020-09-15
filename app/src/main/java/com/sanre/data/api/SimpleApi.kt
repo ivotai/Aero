@@ -1,6 +1,7 @@
 package com.sanre.data.api
 
 import com.sanre.app.Globals
+import com.sanre.data.model.Article
 import com.sanre.data.model.LoginResponse
 import com.sanre.data.model.Page
 import com.sanre.data.model.Response
@@ -26,6 +27,6 @@ interface SimpleApi {
         @Query("pageSize") pageSize: Int ,
         @Query("category") category: String = "zcgd",
         @Query("keyword") keyword: String = ""
-    ): Single<Response<Page<Any>>>
+    ): Single<Response<Page<Article>>>
 
 }

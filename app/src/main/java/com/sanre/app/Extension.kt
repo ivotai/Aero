@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.ToastUtils
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.core.Observable
+import org.joda.time.DateTime
 import java.util.concurrent.TimeUnit
 
 fun View.safeClicks(): Observable<Unit> = this.clicks()
@@ -48,4 +49,6 @@ fun String.toast() = ToastUtils.showShort(this)
 fun ViewPager2.removeEdgeEffect() {
     (this.getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 }
+
+fun Long.toDisplayFormat() = DateTime(this).toString("yyyy-MM-dd HH:mm:ss")
 
