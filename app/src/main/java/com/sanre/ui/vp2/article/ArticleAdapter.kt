@@ -1,4 +1,4 @@
-package com.sanre.ui.article
+package com.sanre.ui.vp2.article
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule

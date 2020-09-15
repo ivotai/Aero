@@ -1,5 +1,6 @@
-package com.sanre.ui.article
+package com.sanre.ui.vp2.article
 
+import com.sanre.app.Param
 import com.sanre.app.di.ComponentHolder
 import com.sanre.data.model.Article
 import com.sanre.ui.base.PageFra
@@ -13,6 +14,9 @@ class ArticleFra : PageFra<Article>() {
     }
 
     override fun loadPage(page: Int) =
-        ComponentHolder.appComponent.api().getArticle(page = page, pageSize = pageSize)
+        ComponentHolder.appComponent.api()
+            .getArticle(page = page, pageSize = pageSize, category = category)
+
+    private val category by lazy { arguments?.getString(Param) }
 
 }

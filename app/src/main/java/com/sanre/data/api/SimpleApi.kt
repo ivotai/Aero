@@ -24,8 +24,8 @@ interface SimpleApi {
     @GET("api/v1/app/article")
     fun getArticle(
         @Query("page") page: Int,
-        @Query("pageSize") pageSize: Int ,
-        @Query("category") category: String = "zcgd",
+        @Query("pageSize") pageSize: Int,
+        @Query("category") category: String?,
         @Query("keyword") keyword: String = ""
     ): Single<Response<Page<Article>>>
 

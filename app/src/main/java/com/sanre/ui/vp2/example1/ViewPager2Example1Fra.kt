@@ -27,6 +27,7 @@ class ViewPager2Example1Fra : BaseFra(R.layout.fra_viewpager2_example1) {
         viewPager2.removeEdgeEffect()
         viewPager2.isUserInputEnabled = false
         viewPager2.adapter = ViewPager2Example1FragmentStateAdapter(this)
+        viewPager2.offscreenPageLimit = ViewPager2Example1FragmentStateAdapter.titles.size - 1
     }
 
     private fun initTab() {
@@ -58,6 +59,13 @@ class ViewPager2Example1Fra : BaseFra(R.layout.fra_viewpager2_example1) {
                     Fal.Icon.fal_book_dead,
                     Fas.Icon.fas_book_dead,
                     titles[3]
+                )
+            )
+            .addItem(
+                newItem(
+                    Fal.Icon.fal_bible,
+                    Fas.Icon.fas_bible,
+                    titles[4]
                 )
             )
             .build()
