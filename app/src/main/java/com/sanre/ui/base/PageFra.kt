@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.rxjava.rxlife.lifeOnMain
 import com.sanre.R
+import com.sanre.app.toast
 import com.sanre.data.model.Page
 import com.sanre.data.model.Response
 import com.sanre.other.KotlinViewHolder
@@ -31,7 +32,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
     private val size
         get() = pageAdapter.data.size
 
-    private val page
+    private val nextPage
         get() = size / pageSize + startPage
 
     override fun initViews() {
@@ -62,12 +63,12 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
     }
 
     override fun initBindings() {
-        mSwipeRefreshLayout.setOnRefreshListener { loadFirstPage() }
+        mSwipeRefreshLayout.setOnRefreshListener { loadStartPage() }
         loadMoreModule.setOnLoadMoreListener { loadNextPage() }
-        loadFirstPage()
+        loadStartPage()
     }
 
-    private fun loadFirstPage() {
+    private fun loadStartPage() {
         mSwipeRefreshLayout.isRefreshing = true
         loadPage(startPage)
             .lifeOnMain(this)
@@ -75,13 +76,15 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
                 mSwipeRefreshLayout.isRefreshing = false
                 if (it.failed) return@subscribe
                 pageAdapter.setList(it.data.content)
+                checkIsLoadAll(it.data)
             }, {
                 mSwipeRefreshLayout.isRefreshing = false
+                it.message?.toast()
             })
     }
 
     private fun loadNextPage() {
-        loadPage(page)
+        loadPage(nextPage)
             .lifeOnMain(this)
             .subscribe({
                 if (it.failed) return@subscribe
@@ -90,6 +93,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
                 checkIsLoadAll(it.data)
             }, {
                 loadMoreModule.loadMoreFail()
+                it.message?.toast()
             })
     }
 
