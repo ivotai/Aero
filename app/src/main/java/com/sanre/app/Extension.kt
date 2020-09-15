@@ -5,6 +5,8 @@ import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.ToastUtils
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.core.Observable
@@ -42,4 +44,8 @@ fun TextView.isEmpty(): Boolean = trimText().isEmpty()
 fun TextView.trimText() = text.toString().trim()
 
 fun String.toast() = ToastUtils.showShort(this)
+
+fun ViewPager2.removeEdgeEffect() {
+    (this.getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+}
 

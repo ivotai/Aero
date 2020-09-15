@@ -5,8 +5,8 @@
 4 使用 FragmentContainerView
 5 just fragment 实践
 6 KotlinViewHolder
-7 隐藏 RecyclerView 的过度滚动
-
+7 使用 ViewPager2
+8 隐藏 RecyclerView 和 ViewPager2 的过度滚动
 
 @Parcelize
 
