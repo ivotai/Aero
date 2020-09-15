@@ -6,10 +6,12 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.sanre.R
 import com.sanre.app.RxBus
 import com.sanre.app.safeClicks
+import com.sanre.app.startAct
 import com.sanre.app.toast
 import com.sanre.data.event.LogoutEvent
 import com.sanre.data.model.Guide
 import com.sanre.other.KotlinViewHolder
+import com.sanre.ui.general.BottomTabStripAct
 import kotlinx.android.synthetic.main.item_guide.*
 
 class GuideAdapter : BaseQuickAdapter<Guide, KotlinViewHolder>(R.layout.item_guide, Guide.all) {
@@ -24,6 +26,7 @@ class GuideAdapter : BaseQuickAdapter<Guide, KotlinViewHolder>(R.layout.item_gui
 
             when (item) {
                 Guide.Logout -> RxBus.post(LogoutEvent())
+                Guide.ViewPager21 -> context.startAct(BottomTabStripAct::class.java)
                 else -> ""
             }
             item.cn.toast()

@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.guide.GuideAct" />
+        <activity android:name=".ui.general.BottomTabStripAct" />
     </application>
 
 </manifest>
