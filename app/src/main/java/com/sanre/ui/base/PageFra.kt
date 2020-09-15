@@ -58,7 +58,8 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
 
     private fun initLoadMoreModule() {
         loadMoreModule.run {
-            // do nothing
+            isAutoLoadMore = false
+            isEnableLoadMoreIfNotFullPage = false
         }
     }
 
@@ -76,7 +77,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
                 mSwipeRefreshLayout.isRefreshing = false
                 if (it.failed) return@subscribe
                 pageAdapter.setList(it.data.content)
-                checkIsLoadAll(it.data)
+                checkIsLoadAll(it)
             }, {
                 mSwipeRefreshLayout.isRefreshing = false
                 it.message?.toast()
@@ -87,18 +88,21 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
         loadPage(nextPage)
             .lifeOnMain(this)
             .subscribe({
-                if (it.failed) return@subscribe
+                if (it.failed) {
+                    loadMoreModule.loadMoreFail()
+                    return@subscribe
+                }
                 pageAdapter.addData(it.data.content)
                 loadMoreModule.loadMoreComplete()
-                checkIsLoadAll(it.data)
+                checkIsLoadAll(it)
             }, {
                 loadMoreModule.loadMoreFail()
                 it.message?.toast()
             })
     }
 
-    private fun checkIsLoadAll(pageResponse: Page<T>) {
-        val isLoadAll = size == pageResponse.totalElements.toInt()
+    private fun checkIsLoadAll(pageResponse: Response<Page<T>>) {
+        val isLoadAll = size == pageResponse.data.totalElements.toInt()
         if (isLoadAll) loadMoreModule.loadMoreEnd()
     }
 
