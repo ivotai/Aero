@@ -1,13 +1,15 @@
 package com.sanre.ui.article
 
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.module.LoadMoreModule
 import com.sanre.R
 import com.sanre.app.toDisplayFormat
 import com.sanre.data.model.Article
 import com.sanre.other.KotlinViewHolder
 import kotlinx.android.synthetic.main.item_article.*
 
-class ArticleAdapter : BaseQuickAdapter<Article, KotlinViewHolder>(R.layout.item_article) {
+class ArticleAdapter : BaseQuickAdapter<Article, KotlinViewHolder>(R.layout.item_article),
+    LoadMoreModule {
 
 //    override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): KotlinViewHolder {
 //        val viewHolder = super.onCreateDefViewHolder(parent, viewType)
