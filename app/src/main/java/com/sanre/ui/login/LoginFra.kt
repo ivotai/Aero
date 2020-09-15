@@ -48,7 +48,7 @@ class LoginFra : BaseFra(R.layout.fra_login) {
         showMask(context)
         ComponentHolder.appComponent.api()
             .login(username = etUsername.trimText(), password = etPassword.trimText())
-            .delay(5,TimeUnit.SECONDS)
+            .delay(2,TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .life(this)
             .subscribe({
