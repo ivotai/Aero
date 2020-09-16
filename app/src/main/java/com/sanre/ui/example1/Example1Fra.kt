@@ -2,12 +2,14 @@ package com.sanre.ui.example1
 
 import android.graphics.drawable.Drawable
 import com.blankj.utilcode.util.ColorUtils
+import com.jakewharton.rxbinding4.view.clicks
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import com.sanre.R
 import com.sanre.app.removeEdgeEffect
+import com.sanre.app.toast
 import com.sanre.data.model.Guide
 import com.sanre.other.NormalItemView2
 import com.sanre.other.icon.Fal
@@ -15,6 +17,7 @@ import com.sanre.other.icon.Fas
 import com.sanre.ui.base.BaseAct
 import com.sanre.ui.base.BaseFra
 import kotlinx.android.synthetic.main.fra_example1.*
+import me.majiajie.pagerbottomtabstrip.NavigationController
 
 class Example1Fra : BaseFra(R.layout.fra_example1) {
 
@@ -22,6 +25,17 @@ class Example1Fra : BaseFra(R.layout.fra_example1) {
         titleBar.setTitle(Guide.Example1.cn)
         initViewPager2()
         initTab()
+        initFab()
+    }
+
+    override fun initBindings() {
+        navigationController.addSimpleTabItemSelectedListener { index, _ ->
+            viewPager2.setCurrentItem(index, false)
+        }
+        fab.clicks().subscribe {
+            "你好!".toast()
+            fab.hide()
+        }
     }
 
     private fun initViewPager2() = viewPager2.run {
@@ -31,9 +45,11 @@ class Example1Fra : BaseFra(R.layout.fra_example1) {
         adapter = Example1FragmentStateAdapter(this@Example1Fra)
     }
 
+    private lateinit var navigationController: NavigationController
+
     private fun initTab() {
         val titles = Example1FragmentStateAdapter.titles
-        val navigationController = tab.custom()
+        navigationController = tab.custom()
             .addItem(
                 newItem(
                     Fal.Icon.fal_book,
@@ -70,9 +86,10 @@ class Example1Fra : BaseFra(R.layout.fra_example1) {
                 )
             )
             .build()
-        navigationController.addSimpleTabItemSelectedListener { index, _ ->
-            viewPager2.setCurrentItem(index, false)
-        }
+    }
+
+    private fun initFab() {
+        IconicsDrawable(requireContext(), Fal.Icon.fal_flushed).let { fab.setImageDrawable(it) }
     }
 
     private fun newItem(defaultIIcon: IIcon, checkedIIcon: IIcon, text: String) = newItem(
