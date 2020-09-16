@@ -22,7 +22,7 @@ class GuideAdapter : BaseQuickAdapter<Guide, KotlinViewHolder>(R.layout.item_gui
             position -= headerLayoutCount
             val item = data[position]
             when (item) {
-                Guide.ViewPager21 -> context.startAct(item.cls)
+                Guide.Example1 -> context.startAct(item.cls)
                 Guide.Logout -> RxBus.post(LogoutEvent())
             }
         }
