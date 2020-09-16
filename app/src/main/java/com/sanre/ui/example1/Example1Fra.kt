@@ -114,7 +114,7 @@ class Example1Fra : BaseFra(R.layout.fra_example1) {
         setTextCheckedColor(checkedColor)
     }
 
-    private val defaultColor = ColorUtils.getColor(R.color.grey_700)
+    private val defaultColor = ColorUtils.getColor(R.color.grey_600)
     private val checkedColor = ColorUtils.getColor(R.color.blue_500)
 
 }

@@ -39,6 +39,8 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
         initSwipeRefreshLayout()
         initRecyclerView()
         initLoadMoreModule()
+
+        pageAdapter.setEmptyView(R.layout.ui_empty_view)
     }
 
     private fun initSwipeRefreshLayout() {
@@ -79,10 +81,15 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
                 if (it.failed) return@subscribe
                 pageAdapter.setList(it.data.content)
                 checkIsLoadAll(it)
+                setEmptyViewIfNeed(it)
             }, {
                 mSwipeRefreshLayout.isRefreshing = false
                 it.message?.toast()
             })
+    }
+
+    private fun setEmptyViewIfNeed(pageResponse: Response<Page<T>>) {
+        if (pageResponse.data.content.isEmpty()) pageAdapter.setEmptyView(R.layout.ui_empty_view)
     }
 
     private fun loadNextPage() {
