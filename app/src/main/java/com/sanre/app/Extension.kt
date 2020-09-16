@@ -11,6 +11,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.core.Observable
 import org.joda.time.DateTime
+import java.net.ConnectException
 import java.util.concurrent.TimeUnit
 
 fun View.safeClicks(): Observable<Unit> = this.clicks()
@@ -44,11 +45,17 @@ fun TextView.isEmpty(): Boolean = trimText().isEmpty()
 
 fun TextView.trimText() = text.toString().trim()
 
-fun String.toast() = ToastUtils.showShort(this)
+fun String?.toast() = this.let { ToastUtils.showShort(it) }
 
 fun ViewPager2.removeEdgeEffect() {
     (this.getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 }
 
-fun Long.toDisplayFormat() = DateTime(this).toString("yyyy-MM-dd HH:mm:ss")
+fun Long.toDisplayFormat(): String = DateTime(this).toString("yyyy-MM-dd HH:mm:ss")
 
+fun Throwable.getPrompt(): String? = when (this) {
+    is ConnectException -> "没联网吧？"
+    else -> this.message
+}
+
+fun Throwable.showPrompt() = getPrompt().toast()

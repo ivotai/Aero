@@ -7,7 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.rxjava.rxlife.lifeOnMain
 import com.sanre.R
-import com.sanre.app.toast
+import com.sanre.app.showPrompt
 import com.sanre.data.model.Page
 import com.sanre.data.model.Response
 import com.sanre.other.KotlinViewHolder
@@ -39,8 +39,6 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
         initSwipeRefreshLayout()
         initRecyclerView()
         initLoadMoreModule()
-
-        pageAdapter.setEmptyView(R.layout.ui_empty_view)
     }
 
     private fun initSwipeRefreshLayout() {
@@ -84,7 +82,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
                 setEmptyViewIfNeed(it)
             }, {
                 mSwipeRefreshLayout.isRefreshing = false
-                it.message?.toast()
+                it.showPrompt()
             })
     }
 
@@ -105,7 +103,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
                 checkIsLoadAll(it)
             }, {
                 loadMoreModule.loadMoreFail()
-                it.message?.toast()
+                it.showPrompt()
             })
     }
 

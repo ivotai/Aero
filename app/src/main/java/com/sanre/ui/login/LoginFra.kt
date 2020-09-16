@@ -4,15 +4,12 @@ import com.jakewharton.rxbinding4.view.clicks
 import com.orhanobut.logger.Logger
 import com.rxjava.rxlife.lifeOnMain
 import com.sanre.R
+import com.sanre.app.*
 import com.sanre.app.Globals.loginResponse
 import com.sanre.app.Globals.logined
 import com.sanre.app.di.ComponentHolder
 import com.sanre.app.helper.MaskHelper.hideMask
 import com.sanre.app.helper.MaskHelper.showMask
-import com.sanre.app.isEmpty
-import com.sanre.app.startAct
-import com.sanre.app.toast
-import com.sanre.app.trimText
 import com.sanre.data.model.UserInfo
 import com.sanre.ui.base.BaseAct
 import com.sanre.ui.base.BaseFra
@@ -60,6 +57,7 @@ class LoginFra : BaseFra(R.layout.fra_login) {
                 startAct(cls = GuideAct::class.java, finishSelf = true)
             }, {
                 hideMask()
+                it.showPrompt()
             })
     }
 
