@@ -58,8 +58,9 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
 
     private fun initLoadMoreModule() {
         loadMoreModule.run {
-            isAutoLoadMore = false
-            isEnableLoadMoreIfNotFullPage = false
+            // 设置为 false 可以更好地测试分页逻辑
+            isAutoLoadMore = true
+            isEnableLoadMoreIfNotFullPage = true
         }
     }
 
